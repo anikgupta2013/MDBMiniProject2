@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97129354233202B8002AAD08 /* FilterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97129353233202B8002AAD08 /* FilterVC.swift */; };
 		973A2C912331F2F100B7F603 /* PokemonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A2C902331F2F100B7F603 /* PokemonGenerator.swift */; };
 		973A2C972331F39700B7F603 /* pokeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 973A2C962331F39700B7F603 /* pokeData.json */; };
 		97D8AD6A2331F06A000ED444 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8AD692331F06A000ED444 /* AppDelegate.swift */; };
-		97D8AD6C2331F06A000ED444 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8AD6B2331F06A000ED444 /* ViewController.swift */; };
+		97D8AD6C2331F06A000ED444 /* SearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8AD6B2331F06A000ED444 /* SearchVC.swift */; };
 		97D8AD6F2331F06A000ED444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D8AD6D2331F06A000ED444 /* Main.storyboard */; };
 		97D8AD712331F06C000ED444 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97D8AD702331F06C000ED444 /* Assets.xcassets */; };
 		97D8AD742331F06C000ED444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D8AD722331F06C000ED444 /* LaunchScreen.storyboard */; };
@@ -37,11 +38,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		97129353233202B8002AAD08 /* FilterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterVC.swift; sourceTree = "<group>"; };
 		973A2C902331F2F100B7F603 /* PokemonGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonGenerator.swift; sourceTree = "<group>"; };
 		973A2C962331F39700B7F603 /* pokeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pokeData.json; sourceTree = "<group>"; };
 		97D8AD662331F06A000ED444 /* MDB Mini Project 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MDB Mini Project 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D8AD692331F06A000ED444 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		97D8AD6B2331F06A000ED444 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		97D8AD6B2331F06A000ED444 /* SearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVC.swift; sourceTree = "<group>"; };
 		97D8AD6E2331F06A000ED444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		97D8AD702331F06C000ED444 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97D8AD732331F06C000ED444 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -83,7 +85,8 @@
 		973A2C922331F2FC00B7F603 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				97D8AD6B2331F06A000ED444 /* ViewController.swift */,
+				97D8AD6B2331F06A000ED444 /* SearchVC.swift */,
+				97129353233202B8002AAD08 /* FilterVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -306,7 +309,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97D8AD6C2331F06A000ED444 /* ViewController.swift in Sources */,
+				97129354233202B8002AAD08 /* FilterVC.swift in Sources */,
+				97D8AD6C2331F06A000ED444 /* SearchVC.swift in Sources */,
 				973A2C912331F2F100B7F603 /* PokemonGenerator.swift in Sources */,
 				97D8AD6A2331F06A000ED444 /* AppDelegate.swift in Sources */,
 				97D8AD992331F27B000ED444 /* Pokemon.swift in Sources */,
