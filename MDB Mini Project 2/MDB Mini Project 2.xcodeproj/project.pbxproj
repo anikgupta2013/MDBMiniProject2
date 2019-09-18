@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		973A2C912331F2F100B7F603 /* PokemonGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 973A2C902331F2F100B7F603 /* PokemonGenerator.swift */; };
+		973A2C972331F39700B7F603 /* pokeData.json in Resources */ = {isa = PBXBuildFile; fileRef = 973A2C962331F39700B7F603 /* pokeData.json */; };
 		97D8AD6A2331F06A000ED444 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8AD692331F06A000ED444 /* AppDelegate.swift */; };
 		97D8AD6C2331F06A000ED444 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8AD6B2331F06A000ED444 /* ViewController.swift */; };
 		97D8AD6F2331F06A000ED444 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D8AD6D2331F06A000ED444 /* Main.storyboard */; };
@@ -14,6 +16,7 @@
 		97D8AD742331F06C000ED444 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97D8AD722331F06C000ED444 /* LaunchScreen.storyboard */; };
 		97D8AD7F2331F06C000ED444 /* MDB_Mini_Project_2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8AD7E2331F06C000ED444 /* MDB_Mini_Project_2Tests.swift */; };
 		97D8AD8A2331F06C000ED444 /* MDB_Mini_Project_2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8AD892331F06C000ED444 /* MDB_Mini_Project_2UITests.swift */; };
+		97D8AD992331F27B000ED444 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D8AD982331F27B000ED444 /* Pokemon.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		973A2C902331F2F100B7F603 /* PokemonGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonGenerator.swift; sourceTree = "<group>"; };
+		973A2C962331F39700B7F603 /* pokeData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pokeData.json; sourceTree = "<group>"; };
 		97D8AD662331F06A000ED444 /* MDB Mini Project 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MDB Mini Project 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D8AD692331F06A000ED444 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97D8AD6B2331F06A000ED444 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +52,7 @@
 		97D8AD852331F06C000ED444 /* MDB Mini Project 2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MDB Mini Project 2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97D8AD892331F06C000ED444 /* MDB_Mini_Project_2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDB_Mini_Project_2UITests.swift; sourceTree = "<group>"; };
 		97D8AD8B2331F06C000ED444 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97D8AD982331F27B000ED444 /* Pokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +80,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		973A2C922331F2FC00B7F603 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				97D8AD6B2331F06A000ED444 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		973A2C932331F30600B7F603 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		973A2C942331F33100B7F603 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				973A2C962331F39700B7F603 /* pokeData.json */,
+				97D8AD702331F06C000ED444 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		973A2C952331F33900B7F603 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		97D8AD5D2331F06A000ED444 = {
 			isa = PBXGroup;
 			children = (
@@ -97,10 +134,13 @@
 		97D8AD682331F06A000ED444 /* MDB Mini Project 2 */ = {
 			isa = PBXGroup;
 			children = (
+				97D8AD972331F212000ED444 /* Models */,
+				973A2C932331F30600B7F603 /* Views */,
+				973A2C922331F2FC00B7F603 /* Controllers */,
+				973A2C952331F33900B7F603 /* Helpers */,
+				973A2C942331F33100B7F603 /* Resources */,
 				97D8AD692331F06A000ED444 /* AppDelegate.swift */,
-				97D8AD6B2331F06A000ED444 /* ViewController.swift */,
 				97D8AD6D2331F06A000ED444 /* Main.storyboard */,
-				97D8AD702331F06C000ED444 /* Assets.xcassets */,
 				97D8AD722331F06C000ED444 /* LaunchScreen.storyboard */,
 				97D8AD752331F06C000ED444 /* Info.plist */,
 			);
@@ -123,6 +163,15 @@
 				97D8AD8B2331F06C000ED444 /* Info.plist */,
 			);
 			path = "MDB Mini Project 2UITests";
+			sourceTree = "<group>";
+		};
+		97D8AD972331F212000ED444 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				973A2C902331F2F100B7F603 /* PokemonGenerator.swift */,
+				97D8AD982331F27B000ED444 /* Pokemon.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +280,7 @@
 			files = (
 				97D8AD742331F06C000ED444 /* LaunchScreen.storyboard in Resources */,
 				97D8AD712331F06C000ED444 /* Assets.xcassets in Resources */,
+				973A2C972331F39700B7F603 /* pokeData.json in Resources */,
 				97D8AD6F2331F06A000ED444 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,7 +307,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				97D8AD6C2331F06A000ED444 /* ViewController.swift in Sources */,
+				973A2C912331F2F100B7F603 /* PokemonGenerator.swift in Sources */,
 				97D8AD6A2331F06A000ED444 /* AppDelegate.swift in Sources */,
+				97D8AD992331F27B000ED444 /* Pokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
