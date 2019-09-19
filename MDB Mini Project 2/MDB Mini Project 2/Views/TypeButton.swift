@@ -10,14 +10,8 @@ import UIKit
 
 class TypeButton: UIButton {
     
-    
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
+    //Making a toggle button
     override func draw(_ rect: CGRect) {
-        // Drawing code
-        /*if self.isSelected {
-            self.backgroundColor = Constants.Interface.blue
-        }*/
         self.setTitleColor(.white, for: .selected)
         self.addTarget(self, action: #selector(handleToggleBT), for: .touchUpInside)
     }

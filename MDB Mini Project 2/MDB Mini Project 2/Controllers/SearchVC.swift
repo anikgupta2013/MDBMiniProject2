@@ -8,15 +8,17 @@
 
 import UIKit
 
+
 class SearchVC: UIViewController{
     
     
     
     @IBOutlet weak var tableView: UITableView!
     
-    //var detailViewController: DetailVC? = nil
     var pokemonList = [Pokemon]()
     var filteredPokemon = [Pokemon]()
+    static var filter = Filter()
+    static var randomTwenty = false
     let searchController = UISearchController(searchResultsController: nil)
 
     override func viewDidLoad() {
@@ -28,77 +30,68 @@ class SearchVC: UIViewController{
         navigationItem.searchController = searchController
         definesPresentationContext = true
         
-        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.rowHeight = 50
         
+        // Init pokemon list and sort based on number
         pokemonList = PokemonGenerator.getPokemonArray()
         pokemonList.sort { (a, b) -> Bool in
             return a.number - b.number < 0
         }
-        /*if let splitViewController = splitViewController {
-            let controllers = splitViewController.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailVC
-        }*/
+        updateFilter()
     }
-    
-    /*override func viewWillAppear(_ animated: Bool) {
-        /*guard let splVCTest = splitViewController else{
-            return
-        }*/
-        if splitViewController!.isCollapsed {
-            if let selectionIndexPath = tableView.indexPathForSelectedRow {
-                tableView.deselectRow(at: selectionIndexPath, animated: animated)
-            }
-        }
-        super.viewWillAppear(animated)
-    }*/
+    override func viewWillAppear(_ animated: Bool) {
+        updateFilter()
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    // MARK: - Table View
-
     
-    
-    
-    // MARK: - Private instance methods
-    
-    func filterContentForSearchText(_ searchText: String){//}, scope: String = "All") {
+    func filterContentForSearchText(_ searchText: String){
+        // filters based on search text and filter
         filteredPokemon = pokemonList.filter({( pokemon : Pokemon) -> Bool in
-            //let doesCategoryMatch = (scope == "All") || (pokemon.name == scope)
-            
-            /*if searchBarIsEmpty() {
-                return doesCategoryMatch
-            } else {
-                return doesCategoryMatch && pokemon.name.lowercased().contains(searchText.lowercased())
-            }*/
-            return pokemon.name.lowercased().contains(searchText.lowercased()) || String(pokemon.number).contains(searchText.lowercased())
+            return SearchVC.filter.isValid(pokemon: pokemon) && (searchText == "" || pokemon.name.lowercased().contains(searchText.lowercased()) || String(pokemon.number).contains(searchText.lowercased()))
         })
+        // Selects 20 random filtered pokemon if option is selected
+        if SearchVC.randomTwenty {
+            filteredPokemon.shuffle()
+            filteredPokemon = Array(filteredPokemon.prefix(min(filteredPokemon.count, 20)))
+            filteredPokemon.sort { (a, b) -> Bool in
+                return a.number - b.number < 0
+            }
+        }
         tableView.reloadData()
     }
     
     func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
-    
-    func isFiltering() -> Bool {
-        let searchBarScopeIsFiltering = searchController.searchBar.selectedScopeButtonIndex != 0
-        return searchController.isActive && (!searchBarIsEmpty() || searchBarScopeIsFiltering)
+    // Sets filter from FiltersVC
+    static func setFilter(f: Filter) {
+        SearchVC.filter = f
+        
+    }
+    func updateFilter(){
+        filteredPokemon = pokemonList.filter({( pokemon : Pokemon) -> Bool in
+            return SearchVC.filter.isValid(pokemon: pokemon)
+        })
+        if SearchVC.randomTwenty {
+            filteredPokemon.shuffle()
+            filteredPokemon = Array(filteredPokemon.prefix(min(filteredPokemon.count, 20)))
+            filteredPokemon.sort { (a, b) -> Bool in
+                return a.number - b.number < 0
+            }
+        }
+        tableView.reloadData()
     }
     
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //print(segue)
+        //segue to detailed view
         if segue.identifier != "showFilters" {
-            
             if let indexPath = tableView.indexPathForSelectedRow {
                 let pokemon: Pokemon
-                if isFiltering() {
-                    pokemon = filteredPokemon[indexPath.row]
-                } else {
-                    pokemon = pokemonList[indexPath.row]
-                }
-                //let controller = (segue.destination as! UINavigationController).topViewController as! DetailVC
+                pokemon = filteredPokemon[indexPath.row]
                 let controller =  segue.destination as! DetailVC
                 controller.detailPokemon = pokemon
             }
@@ -108,7 +101,7 @@ class SearchVC: UIViewController{
 extension SearchVC: UISearchBarDelegate {
     // MARK: - UISearchBar Delegate
     func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        filterContentForSearchText(searchBar.text!)//, scope: searchBar.scopeButtonTitles![selectedScope])
+        filterContentForSearchText(searchBar.text!)
     }
 }
 
@@ -116,8 +109,7 @@ extension SearchVC: UISearchResultsUpdating {
     // MARK: - UISearchResultsUpdating Delegate
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        //let scope = "All"//searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
-        filterContentForSearchText(searchController.searchBar.text!)//, scope: scope)
+        filterContentForSearchText(searchController.searchBar.text!)
     }
 }
 
@@ -128,29 +120,17 @@ extension SearchVC: UITableViewDelegate{
 }
 extension SearchVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFiltering() {
-            //searchFooter.setIsFilteringToShow(filteredItemCount: filteredPokemon.count, of: pokemonList.count)
-            return filteredPokemon.count
-        }
-        //searchFooter.setNotFiltering()
-        return pokemonList.count
+        return filteredPokemon.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //print("hi")
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        //let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "Cell")
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         
         let pokemon: Pokemon
-        if isFiltering() {
-            pokemon = filteredPokemon[indexPath.row]
-        } else {
-            pokemon = pokemonList[indexPath.row]
-        }
-        
+        pokemon = filteredPokemon[indexPath.row]
+        // Get data about pokemon and display if possible in row
         cell.textLabel!.text = String(pokemon.name)
         cell.detailTextLabel!.text = String(pokemon.number)
         guard let url = URL(string: pokemon.imageUrl)?.absoluteString else {

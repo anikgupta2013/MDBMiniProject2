@@ -14,6 +14,8 @@ class DetailVC: UIViewController {
     var urlWeb: URL?
     var canOpenWeb = false
     
+    
+    //All attributes
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
@@ -31,10 +33,6 @@ class DetailVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*guard let poke = detailPokemon else{
-            print("bye")
-            return
-        }*/
         nameLabel.text = detailPokemon?.name
         typeLabel.text = detailPokemon?.types.joined(separator: " | ")
         speciesLabel.text = detailPokemon?.species
@@ -46,6 +44,12 @@ class DetailVC: UIViewController {
         speedLabel.text = "Speed: \(detailPokemon!.speed!)"
         totalLabel.text = "Total: \(detailPokemon!.total!)"
     
+        let defaults = UserDefaults.standard
+        var arr = defaults.array(forKey: "savedPokemon") as? [String] ?? [String]()
+        if arr.contains(detailPokemon!.name) {
+            favoriteButton.isEnabled = false
+        }
+        
         if let url = URL(string: "https://google.com/search?q=\(detailPokemon!.name!)") {
             canOpenWeb = true
         }
@@ -62,17 +66,20 @@ class DetailVC: UIViewController {
             return
         }
         profileImage.image = UIImage(data: try! Data(contentsOf: URL(string: detailPokemon!.imageUrl)!))
-    }
-    
-    @IBAction func addFavoritesPressed(_ sender: Any) {
         
     }
-    
+    // If favorite button is pressed, add to UserDefaults
+    @IBAction func addFavoritesPressed(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        var arr = defaults.array(forKey: "savedPokemon") as? [String] ?? [String]()
+        arr.append(detailPokemon!.name)
+        defaults.set(arr, forKey: "savedPokemon")
+        favoriteButton.isEnabled = false
+    }
+    // If it is possible to open website, open
     @IBAction func searchWebPressed(_ sender: Any) {
         if canOpenWeb {
             UIApplication.shared.open(URL(string: "https://google.com/search?q=\(detailPokemon!.name!)")!)
         }
-        
-        //self.performSegue(withIdentifier: "toWebView", sender: self)
     }
 }
